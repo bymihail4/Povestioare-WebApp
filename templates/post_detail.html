@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} - {{post.title}}{% endblock title %}
+
+{% block content %}  
+  <section class="u-clearfix current-section u-block-4b8a-1" id="sec-bfec">
+    <div class="post-title-2 u-clearfix u-sheet u-block-4b8a-2">
+      <h1 class="post-title-1 u-text u-text-black u-text-default u-title u-block-control u-block-4b8a-4">{{post.title}}
+      </h1>
+      <img class="u-image u-image-default u-block-control u-block-4b8a-3 post-image-1" src="/1b95277ee17ed5/la-doctor.jpg" alt="" data-image-width="364" data-image-height="205">
+    </div>
+  </section>
+  
+  <section class="u-clearfix current-section u-block-12f0-1" id="sec-27e2">
+      <div class="body-post-1 u-clearfix u-sheet u-block-12f0-2 ">
+          <p class="body-author-1 u-text u-text-default u-block-control u-block-12f0-3 ">@{{ post.author }}</p>
+          <p class="body-date-1 u-text u-text-default u-block-control u-block-12f0-4 ">​Published {{ post.publish.date }}</p>
+    </div>
+  </section>
+  <section class="u-clearfix u-section-3" id="sec-22e7">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <p class="u-align-justify u-custom-font u-font-roboto u-text u-text-default u-text-1"> {{post.body|linebreaks}}</p>>
+    </div>
+  </section>
+  {% endblock content %}

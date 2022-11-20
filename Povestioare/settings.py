@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'Povestioare.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,6 +124,26 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+JAZZMIN_SETTINGS = {
+    "site_brand": "Admin Panel",
+    "welcome_sign": "Welcome to Povestioare",
+    "show_ui_builder": True,
+    "topmenu_links":[
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Support", "url": "https://github.com/bymihail32/Povestioare-Web-App-", "new_window": True},
+        {"model": "auth.User"},
+        {"app": "blog"},
+         ],
+    "copyright": "ByMihail32",
+    "usermenu_links": [
+        {"name":"Support", "url": "https://github.com/bymihail32/Povestioare-Web-App-", "new_window": True},
+        {"model": "auth.user"}
+    ],
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
