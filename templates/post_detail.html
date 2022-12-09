@@ -22,8 +22,37 @@
   </section>
   <section class="u-clearfix u-section-3" id="sec-22e7">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <p class="u-align-justify u-custom-font u-font-roboto u-text u-text-default u-text-1"> {{post.body|safe}}</p>>
+      <p class="u-align-justify u-custom-font u-font-roboto u-text u-text-default u-text-1"> {{post.body|safe}}</p>
     </div>
   </section>
 <div class="page-bottom"></div>
   {% endblock content %}
+
+{% block comment %}
+<hr/>
+<div class="comment-media">
+  <h3 class="comment-title">Add Comment</h3>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit" class="btn btn-primary">Comment</button>
+  </form>
+</div>
+</br>
+<div class="comment-total">
+  {% with comments.count as total_comments %}
+  <h3 class="comment-title">{{ total_comments }} comment{{ total_comments|pluralize }}
+  </h3>
+  {% endwith %}
+</div>
+{% if not post.comments.all %}
+<div class="comment-media">
+No comments yet
+</div>
+{% else %}
+  {% for comment in post.get_comments %}
+  {% include 'comment.html' with comment=comment %}
+{% endfor %}
+{% endif %}
+<div class="page-bottom"></div>
+{% endblock comment %}
