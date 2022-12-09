@@ -275,3 +275,29 @@ data-mode="XS"
     margin-bottom: 13px; 
     margin-left: auto;
 }
+
+article img {
+    max-width: 100%!important;
+    height: auto !important;
+    border-radius: .25rem!important;
+}
+
+.featured-image-list {
+    object-fit: cover;
+}
+
+.body-name {
+    font-weight: 700;
+}
+
+.body-subtitle {
+    font-size: 20px;
+}
+
+.page-bottom {
+    margin-bottom: 50px;
+}
+
+.page-top {
+    margin-top: 25px;
+}
