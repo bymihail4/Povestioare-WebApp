@@ -22819,7 +22819,7 @@ h6 {
 }
 .u-body {
   color: #111111;
-  background-color: #f0f2f5;
+  background-color: #F0F2F5;
   --effect-scale: 1.1;
 }
 /*end-variables color*/
@@ -34803,7 +34803,7 @@ a.u-button-style.u-button-style.active > .u-text-active-palette-1-base[class*="u
 .u-text-hover-palette-1-base .u-language-url:hover,
 .u-popupmenu-items.u-text-hover-palette-1-base .u-nav-link:hover,
 .u-popupmenu-items.u-popupmenu-items.u-text-active-palette-1-base .u-nav-link.active {
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 .u-text-palette-1-base .u-svg-link,
 .u-text-hover-palette-1-base:hover .u-svg-link,

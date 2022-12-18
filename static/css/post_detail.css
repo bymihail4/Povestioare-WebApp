@@ -301,3 +301,84 @@ article img {
 .page-top {
     margin-top: 25px;
 }
+
+.comment-media {
+    justify-content: center;
+    width: 1140px;
+    margin-top: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.comment-title {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.comment-body {
+    justify-content: center;
+    padding-top: 2%;
+    text-align: left;
+    width: 1040px;
+}
+
+.comment-title-2 {
+    justify-content: center;
+    width: 1040px;
+    height: 380px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.comment-author {
+    padding-top: 2%;
+}
+
+.comment-total {
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+}
+
+.page-bottom {
+     margin-bottom: 50px;
+}
+
+.page-bottom-m {
+     margin-bottom: 50px;
+     padding-top: 5%;
+}
+
+.body-name {
+    font-weight: 700;
+}
+
+.body-subtitle {
+    font-size: 20px;
+}
+
+.pagination-color-2 {
+    background-color: #F0F2F5;
+}
+
+.home-welcome {
+    display: flex;
+    justify-content: center;
+}!important
+
+.home-butom {
+    display: flex;
+    justify-content: center;
+    padding-right: 5px;
+}!important
+
+.home-butom-2 {
+    display: flex;
+    justify-content: center;
+}!important
