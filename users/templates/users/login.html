@@ -7,7 +7,7 @@
                 <div class="col-lg-5">
                     <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
                         <div class="card-header justify-content-center">
-                          <h3 class="font-weight-light my-1 text-center">Sign In</h3>
+                          <h3 class="my-1 text-center" style="color: #880606; font-weight: 600;">Sign In</h3>
                         </div>
                         {% if form.errors %}
                             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -27,14 +27,14 @@
                                 <div class="form-row">
                                     <div class="col-md-10 offset-md-1">
                                         <div class="form-group">
-                                            <a href="{% url 'social:begin' 'github' %}"
+                                            <a href="{% url 'social:begin' 'github' %}" style="color: #880606;"
                                                    class="btn btn-link btn-lg active btn-block">Sign in with GitHub</a>
-                                            <a href="{% url 'social:begin' 'google-oauth2' %}"
+                                            <a href="{% url 'social:begin' 'google-oauth2' %}" style="color: #880606;"
                                                    class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
                                             <hr>
                                             <p class="text-center"><strong>OR</strong></p>
                                             <hr>
-                                            <label class="small mb-1">Username</label>
+                                            <label class="font-weight-sec mb-1">Username</label>
                                             {{ form.username }}
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@
                                 <div class="form-row">
                                     <div class="col-md-10 offset-md-1">
                                         <div class="form-group">
-                                          <label class="small mb-1">Password</label>
+                                          <label class="font-weight-sec mb-1">Password</label>
                                           {{ form.password }}
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                                 <div class="form-row">
                                     <div class="col-md-10 offset-md-1">
                                         <div class="form-group mt-0 mb-1">
-                                          <button name="login" class="col-md-12 btn btn-dark" id="login">Sign in</button>
+                                          <button name="login" class="col-md-12 btn com-but btn" id="login">Sign in</button>
                                         </div>
                                     </div>
                                 </div>
@@ -67,8 +67,10 @@
                         </div>
                         <div class="card-footer text-center">
                             <div class="small">
-                                <a href="{% url 'users:users-register' %}">Don't have an account yet? Go to signup</a><br>
-                                <a href="{% url 'password_reset' %}"><i>Forgot Password?</i></a>
+                                <a href="{% url 'users:users-register' %}">
+                                    Don't have an account yet? Go to signup</a><br>
+                                <a href="{% url 'password_reset' %}">
+                                    <i>Forgot Password?</i></a>
                             </div>
                         </div>
                     </div>

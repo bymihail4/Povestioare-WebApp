@@ -1,11 +1,27 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Count, Q
 from .models import Post, Comment
 from .forms import CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from taggit.models import Tag
 
 
-def post_list(request):
+def post_list(request, tag_slug=None):
     posts = Post.published.all()
+
+    # Tag
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = posts.filter(tags__in=[tag])
+
+    # Search
+    query = request.GET.get("search")
+    if query:
+        posts = Post.published.filter(Q(title__icontains=query) | Q(tags__name__icontains=query)).distinct()
+
 
     paginator = Paginator(posts, 6)
     page = request.GET.get('page')
@@ -16,7 +32,7 @@ def post_list(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, 'post_list.html', {'posts': posts})
+    return render(request, 'post_list.html', {'posts': posts, page: 'pages', 'tag': tag})
 
 
 def post_detail(request, post):
@@ -35,9 +51,14 @@ def post_detail(request, post):
     else:
         comment_form = CommentForm()
 
+    post_tags_ids = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:3]
+
     return render(request, 'post_detail.html', {'post': post,
                                                 'comments': comments,
-                                                'comment_form': comment_form})
+                                                'comment_form': comment_form,
+                                                'similar_posts': similar_posts})
 
 
 def reply_page(request):
@@ -59,3 +80,10 @@ def reply_page(request):
             return redirect(post_url + '#' + str(reply.id))
 
         return redirect("/")
+
+class AddPost(CreateView):
+    model = Post
+    template_name = 'add_post.html'
+    fields = ['title', 'slug', 'author', 'image', 'tags', 'body', 'status']
+
+    # success_url = reverse_lazy('users:users-home')

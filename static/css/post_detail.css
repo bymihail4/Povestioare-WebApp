@@ -382,3 +382,137 @@ article img {
     display: flex;
     justify-content: center;
 }!important
+
+#tag-list {
+    display: block;
+    position: relative;
+}
+
+.tag-title {
+    justify-content: center;
+    width: 1140px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #880606;
+    display: flex;
+}
+
+.com-but {
+    background-color: #880606;
+    color: white;
+    font-weight: 600;
+
+}
+
+.similar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: $card-bg;
+  background-clip: border-box;
+  border: $card-border-width solid $card-border-color;
+  @include border-radius($card-border-radius);
+}
+
+.sim-img {
+  max-width: 100%;
+  height: auto;
+
+}
+
+.sim-title {
+    justify-content: center;
+    width: 1140px;
+    margin-top: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.sim-title-up {
+    justify-content: center;
+    width: 1140px;
+    margin-top: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.search-title {
+    font-weight: 600;
+}
+
+.add-post-form {
+    width: 500px;
+    margin: auto;
+    font-weight: 600;
+}
+
+.add-post-title {
+    padding-bottom: 28px;
+    text-align: center;
+    color: #880606;
+}
+
+form label {
+    padding-right: 10px;
+}
+
+form span {
+    font-weight: 400;
+    font-style: italic;
+}
+
+form {
+    justify-content: center;
+}
+
+.profile-avatar {
+    width: 239px;
+    height: 239px;
+    margin: 0 auto;
+}
+
+.bio-title {
+    padding-bottom: 18px;
+}
+
+.profile-post {
+    min-height: 186px;
+    margin-top: 65px;
+    margin-bottom: 60px;
+    height: auto;
+}
+
+.profile-post-list {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+.post-img {
+    width: 429px;
+    object-position: 50% 0%;
+    height: 180px;
+    margin: 0 auto 0 -55px;
+}
+
+.buton-align {
+    display: inline;
+}
+
+.similar-title {
+    font-weight: 500;
+    font-size: 1.8em;
+}
+
+form p label {
+    font-weight: 500;
+}

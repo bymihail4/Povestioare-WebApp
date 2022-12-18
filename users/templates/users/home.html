@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block title %} Home Page {% endblock title%}
 {% block content %}
+<div class="page-bottom" style="margin-bottom: 99px;"></div>
     <div class="jumbotron comment-media">
-        <h1 class="home-welcome">Welcome to Povestioare</h1>
+        <h1 class="home-welcome" style="color: #880606;">Welcome to Povestioare</h1>
         <p class="lead">
             Welcome <b>to this small blog full with beautifull</b> little stories.
             Here you will find alot of wonderfull stories, some will be funny, some will be different.
         </p>
         <hr class="my-4">
-        <p class="lead home-butom-2">
-            <a class="btn btn-primary btn-lg home-butom" href="{% url 'logout' %}" role="button">Logout</a>
-            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+        <p class="lead home-butom-2" style="text-align: center;">
+            <a style="margin-right: 50px;" class="com-but btn btn-lg home-butom" href="{% url 'logout' %}" role="button">Logout</a>
+            <a class="com-but btn btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
         </p>
     </div>
-
+<div class="page-bottom" style="margin-bottom: 99px;"></div>
 {% endblock content %}

@@ -4,55 +4,110 @@
 
 {% block content %}
 <div class="page-top"></div>
-  <section class="u-clearfix current-section u-block-4b8a-1" id="sec-bfec">
-    <div class="post-title-2 u-clearfix u-sheet u-block-4b8a-2">
-      <h1 class="post-title-1 u-text u-text-black u-text-default u-title u-block-control u-block-4b8a-4">{{post.title}}
-      </h1>
-      {% if post.image %}
-      <img class="u-image u-image-default u-block-control u-block-4b8a-3 post-image-1" src="{{post.image.url}}" alt="" data-image-width="364" data-image-height="205">
-      {% endif %}
-    </div>
-  </section>
+<section class="u-clearfix current-section u-block-4b8a-1" id="sec-bfec">
+  <div class="post-title-2 u-clearfix u-sheet u-block-4b8a-2">
+    <h1 class="post-title-1 u-text u-text-black u-text-default u-title u-block-control u-block-4b8a-4">{{post.title}}
+    </h1>
+    {% if post.image %}
+    <img class="u-image u-image-default u-block-control u-block-4b8a-3 post-image-1" src="{{post.image.url}}" alt="" data-image-width="364" data-image-height="205">
+    {% endif %}
+  </div>
+</section>
   
-  <section class="u-clearfix current-section u-block-12f0-1" id="sec-27e2">
-      <div class="body-post-1 u-clearfix u-sheet u-block-12f0-2 ">
-          <p class="body-author-1 u-text u-text-default u-block-control u-block-12f0-3 ">@{{ post.author }}</p>
-          <p class="body-date-1 u-text u-text-default u-block-control u-block-12f0-4 ">​Published {{ post.publish.date }}</p>
-    </div>
-  </section>
-  <section class="u-clearfix u-section-3" id="sec-22e7">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <p class="u-align-justify u-custom-font u-font-roboto u-text u-text-default u-text-1"> {{post.body|safe}}</p>
-    </div>
-  </section>
+<section class="u-clearfix current-section u-block-12f0-1" id="sec-27e2">
+  <div class="body-post-1 u-clearfix u-sheet u-block-12f0-2 ">
+    <p class="body-author-1 u-text u-text-default u-block-control u-block-12f0-3 ">@{{ post.author }}</p>
+    <p class="body-date-1 u-text u-text-default u-block-control u-block-12f0-4 ">​Published {{ post.publish.date }}</p>
+  </div>
+</section>
+
+<section class="u-clearfix u-section-3" id="sec-22e7">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <p class="u-align-justify u-custom-font u-font-roboto u-text u-text-default u-text-1"> {{post.body|safe}}</p>
+  </div>
+</section>
 <div class="page-bottom"></div>
+<div class="comment-media" style="font-size: 20px;">
+  <p>
+    <strong>Etichete:</strong>
+    {% for tag in post.tags.all %}
+    <a style="color: #880606; font-size: 18px;" href="{% url 'blog:post_tag' tag.slug %}" class="tagging link-light text-decoration-none badge tagging">
+      {{tag.name}}
+    </a>
+    <!-- {% if not forloop.last %}, {% endif %} -->
+    {% endfor %}
+  </p>
+</div>
   {% endblock content %}
+
+{% block similar %}
+<hr />
+<div class="sim-title-up"></div>
+<div class="tag-title">
+  <h3 class="comment-title sim-title" style="color: #880606">Similar Posts</h3>
+</div>
+<div class="sim-title"></div>
+<div class="tag-title">
+    {% for post in similar_posts %}
+    <div class="col-md-6 col-sm-6 col-lg-4 mb-3">
+        <div class="similar border-0">
+            <div class="sim-img ratio ratio-16x9">
+                <img src="{{ post.image.url }}" class="sim-img rounded featured-image-list" alt="{{post.title}}">
+            </div>
+            <div class="card-body p-0 m-0 mt-2">
+                <h2 class="card-title h6 my-0 py-0">
+                    <a style="color: #880606; font-weight: 500; font-size: 1.8rem;"
+                       href="{{post.get_absolute_url}}">{{post.title}}</a>
+                </h2>
+                <p class="card-text">
+                    <small class="text-muted">
+                        <span>{{post.publish.date}} by
+                            <b>{{post.author}}</b>
+                        </span>
+                        <!-- <a href="" class="badge badge-light text-muted">{{post.tags.all|join:" "}}</a> -->
+                    </small>
+                </p>
+                <!-- <p>{{post.body|truncatechars:100|linebreaks}}</p> -->
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-muted">Nu sunt postari asemanatoare</p>
+    {% endfor %}
+</div>
+<div class="page-bottom"></div>
+{% endblock similar %}
 
 {% block comment %}
 <hr/>
 <div class="comment-media">
-  <h3 class="comment-title">Add Comment</h3>
+  <h3 class="comment-title" style="color: #880606">Add Comment</h3>
   <form method="post" action="">
     {% csrf_token %}
     {{ comment_form.as_p }}
-    <button type="submit" class="btn btn-primary">Comment</button>
+    <button type="submit" class="com-but btn" style="font-weight: 600;">Comment</button>
   </form>
 </div>
 </br>
 <div class="comment-total">
   {% with comments.count as total_comments %}
-  <h3 class="comment-title">{{ total_comments }} comment{{ total_comments|pluralize }}
+  <h3 class="comment-title" style="color: #880606">
+    {{ total_comments }} comment{{ total_comments|pluralize }}
   </h3>
   {% endwith %}
 </div>
+
 {% if not post.comments.all %}
 <div class="comment-media">
-No comments yet
+  No comments yet
 </div>
 {% else %}
   {% for comment in post.get_comments %}
   {% include 'comment.html' with comment=comment %}
 {% endfor %}
+
 {% endif %}
+
 <div class="page-bottom"></div>
+
 {% endblock comment %}
