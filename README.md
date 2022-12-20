@@ -67,7 +67,7 @@
 26.	**Search** – funcționalitatea de search pe baza queri-urilor python.
 27.	**Sitemap** – adăugarea unui Sitemap-ului necesar Rss-urilor.
 28.	**Adăugarea articolelor (Add Post)** – opțiunea ca utilizatori logați să poată adăuga propriile postări.
-
+<br>
 <h2 align="center" style="color:#880606;">Project Images</h2>
 <br>
 <h3 style="color:#DAD9D9;">Admin Panel - customized with Jazzmin:</h3>
@@ -78,42 +78,42 @@
 
 <br>
 <h3 style="color:#DAD9D9;">HomePage:</h3>
-
+<br>
 <div style="text-align: center;">
     <img src="https://paxvobis.ro/wp-content/uploads/2022/12/Homepage.png" width="900"/>
 </div>
 
 <br>
 <h3 style="color:#DAD9D9;">Post Detailed:</h3>
-
+<br>
 <div style="text-align: center;">
     <img src="https://paxvobis.ro/wp-content/uploads/2022/12/Articolul-detaliat.png" width="900"/>
 </div>
 
 <br>
 <h3 style="color:#DAD9D9;">Profile Page:</h3>
-
+<br>
 <div style="text-align: center;">
     <img src="https://paxvobis.ro/wp-content/uploads/2022/12/Profile.png" width="900"/>
 </div>
 
 <br>
 <h3 style="color:#DAD9D9;">Login Page:</h3>
-
+<br>
 <div style="text-align: center;">
     <img src="https://paxvobis.ro/wp-content/uploads/2022/12/Login.png" width="900"/>
 </div>
 
 <br>
 <h3 style="color:#DAD9D9;">Register Page:</h3>
-
+<br>
 <div style="text-align: center;">
     <img src="https://paxvobis.ro/wp-content/uploads/2022/12/Register.png" width="900"/>
 </div>
 
 <br>
 <h3 style="color:#DAD9D9;">Add Post Page:</h3>
-
+<br>
 <div style="text-align: center;">
     <img src="https://paxvobis.ro/wp-content/uploads/2022/12/Add-Post.png" width="900"/>
 </div>
