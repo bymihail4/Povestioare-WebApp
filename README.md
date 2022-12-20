@@ -12,7 +12,6 @@
 -	**Python și Django** – partea de backend.
 -	**HTML și CSS** – partea de frontend (AdminPanel, template-uri).
 -	**JavaScript** – cateva animații pe site(search, menu, comment).
--	**Nicepage** – template development.
 
 ### **Package-uri:**
 -	**Pip** -  package installer for Python.
@@ -53,16 +52,15 @@
 22.	**Comment** – secțiune de comentarii, cu câmpuri de adăugare, afișarea lor și răspunsurile la comentariile celorlalți.
 23.	**User management** – Sectiune ce cuprinde tot ce ține de user: login, logout, register, profile, password.
         - **Crearea aplicației user**
-        - **Signup/Register** – partea de crearea contului. 
-        - **Login/Logout** – partea de logare și de de-logare a utilizatorului. 
-        - **Social Signup/Login:** adăugarea opțiunii de creare cont și logare cu profilele sociale: Google/Github.
-
-        - **Password Reset:**
-          - **Resetarea parolei:**
-          - **Confirmarea resetarii parolei:**
-          - **Mesajul de confirmare a resetarii:**
-          - **Trimiterea email-urilor:**
-        - **User profile** – profilul user-ului:
+        - **Signup/Register** – partea de crearea contului.<br> 
+        - **Login/Logout** – partea de logare și de de-logare a utilizatorului. <br>
+        - **Social Signup/Login:** adăugarea opțiunii de creare cont și logare cu profilele sociale: Google/Github.<br>
+        - **Password Reset:**<br>
+            - **Resetarea parolei:**<br>
+            - **Confirmarea resetarii parolei:**<br>
+            - **Mesajul de confirmare a resetarii:**<br>
+            - **Trimiterea email-urilor:**<br>
+        - **User profile** – profilul user-ului:<br>
         - **Profile update** – introducerea unor opțiuni noi pentru utilizator (actualizarea nikname-ului, parolei, email-ului)
 24.	**Tagging** – secțiunea de tag-uri de pe site.
 25.	**Similar Post** – secțiunea de articole similare din pagina detaliata a articolelor.
