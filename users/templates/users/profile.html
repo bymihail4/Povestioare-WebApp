@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
-    <div class="page-bottom"></div>
-    <div class="comment-media">
-        <img class="account-img" src="{{ user.profil.avatar.url }} " style="cursor: pointer;"/>
-    </div>
-    {% if user_form.errors %}
+
+<section class="u-align-center-lg u-align-center-md u-align-center-xl u-align-left-sm u-align-left-xs u-clearfix u-section-1" id="carousel_ff1f" >
+      {% if user_form.errors %}
     <div class="page-bottom"></div>
         <div class="alert alert-danger alert-dismissible" role="alert">
             <div id="form_errors">
@@ -18,30 +16,51 @@
             </button>
         </div>
     {% endif %}
-    <div class="form-content comment-media">
-        <form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="form-row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label class="small mb-1">Username:</label>
-                            {{ user_form.username }}
-                        <label class="small mb-1">Email:</label>
-                            {{ user_form.email }}
-                    </div>
-                    <div class="form-group">
-                        <a href="{% url 'password_change' %}">Change Password</a>
-                        <hr>
-                        <label class="small mb-1">Change Avatar:</label>
-                        {{ profile_form.avatar }}
-                    </div>
-                    <label class="small mb-1">Bio:</label> {{ profile_form.bio }}
-                </div>
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <h1 class="u-text u-text-custom-color-1 u-text-1">{{request.user}} Profile</h1>
+    <p class="u-large-text u-text u-text-custom-color-1 u-text-variant u-text-2">Welcome</p>
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3" >
+            <div class="u-container-layout u-container-layout-3">
+              <h4 class="u-align-center u-text u-text-custom-color-1 u-text-6">Details</h4>
+              <p class="u-text u-text-7">
+                <label style="font-weight: 700;">Username:</label>
+                {{ user_form.username }}
+                <br>
+                <label style="font-weight: 700;">Email:</label>
+                {{ user_form.email }}
+                  <br>
+                  <a href="{% url 'password_change' %}">Change Password</a>
+                  <hr>
+                  <label style="font-weight: 700;">Change Avatar:</label>
+                  {{ profile_form.avatar }}
+              </p>
             </div>
-            <br><br>
-            <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
-            <button type="reset" class="btn btn-dark btn-lg">Reset</button>
-        </form>
+          </div>
+          <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+            <div class="u-container-layout u-valign-middle u-container-layout-2">
+              <img src="{{ user.profil.avatar.url }} " class="profile-avatar u-image u-image-circle u-image-1" data-image-width="200" data-image-height="200"/>
+            </div>
+          </div>
+          <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+            <div class="u-container-layout u-container-layout-1">
+              <h4 class="u-text u-text-custom-color-1 u-text-3" style="padding-bottom: 38px;">Bio:</h4>
+              <label class="u-text u-text-default u-text-4" style="padding-bottom: 18px;">{{ profile_form.bio }}</label>
+              <button type="reset" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-radius-50 u-btn-2">Reset</button>
+              <button type="submit" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-radius-50 u-btn-2">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</form>
+</section>
 <div class="page-bottom"></div>
+
 {% endblock content %}
+    

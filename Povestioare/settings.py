@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'social_django',
+    'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                #Social Login/Signup
+                # Social Login/Signup
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -155,12 +159,15 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_SECRET')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_PORT = 2525
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+TAGGIT_CASE_INSENSITIVE = True
 
 CKEDITOR_CONFIGS = {
     'default': {

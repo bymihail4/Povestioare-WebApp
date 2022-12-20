@@ -4,10 +4,20 @@
     <section class="u-align-center u-clearfix u-section-1" id="sec-d27d">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Ultimele Povestioare</h1>
-        <p class="u-text u-text-2 body-subtitle">Povestioare scurte si frumoase pentru toata lumea.&nbsp;</p>
+        <p class="u-text u-text-2 body-subtitle">Povestioare scurte si frumoase pentru toata lumea.&nbsp</p>
       </div>
     </section>
+    {% if tag %}
+      <h3 class="tag-title">Mai multe povestioare {{ tag.name }}</h3>
+    {% endif %}
     {% for post in posts %}
+    <div class="sim-title">
+      <h2 class="comment-title sim-title search-title" style="color: #880606; font-weight: 600; font-size: 1.8rem;">
+        {% if request.GET.search is not null %}
+          Search Results for "{{ request.GET.search }}"
+        {% endif %}
+      </h2>
+    </div>
     <section class="u-clearfix u-section-2" id="sec-398c">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-gutter-0 u-layout-spacing-vertical u-layout-wrap u-layout-wrap-1">
@@ -30,7 +40,7 @@
                     <div class="u-layout-row">
                       <div class="u-align-center u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
                         <div class="u-container-layout u-valign-middle u-container-layout-2">
-                          <h3 class="u-text u-text-custom-color-1 u-text-default u-text-1"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                          <h3 style="font-weight: 600;" class="u-text u-text-custom-color-1 u-text-default u-text-1"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                         </div>
                       </div>
                     </div>

@@ -7,7 +7,7 @@ class Profil(models.Model):
     objects = None
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    avatar = models.ImageField(default='prima.jpg', upload_to='profile_images')
     bio = models.TextField()
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Profil(models.Model):
 
         img = Image.open(self.avatar.path)
 
-        if img.height > 300 or img.width > 200:
-            new_img = (300, 200)
+        if img.height > 200 or img.width > 200:
+            new_img = (200, 200)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
