@@ -1,0 +1,224 @@
+.profile {
+  background: url("/media/header.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.profile-image {
+  object-fit: cover;
+  display: block;
+  vertical-align: middle;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.section {
+    position: relative;
+}
+
+.fundal-imagine {
+    min-height: 239px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.profile-list {
+    width: 831px;
+    margin: 63px 0 21px auto;
+}
+
+.profile-avatar {
+    width: 197px;
+    height: 197px;
+    margin: 21px auto 0 33px;
+    overflow: hidden;
+    object-fit: cover;
+    display: block;
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.profile-menu {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: right;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profile-title {
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 1.6;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.profile-image {
+  margin: 21px auto 0 33px;
+}
+
+.profile-layout-1 {
+    padding-top: 19px;
+    padding-right: 30px;
+    padding-bottom: 19px;
+    padding-left: 0px;
+}
+
+.profile-layout-2 {
+    padding-top: 19px;
+    padding-right: 0px;
+    padding-bottom: 30px;
+    padding-left: 19px;
+}
+
+.input-text {
+       cols="40"
+       rows="5"
+}
+
+.profile-title-2 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.add-post-title-3 {
+    font-weight: 600;
+    color: #880606;
+    font-size: 24px;
+}
+
+.add-post-title-4 {
+    font-weight: 600;
+    color: #880606;
+    font-size: 20px;
+}
+
+.add-post-div-fl {
+    float: left;
+    padding-right: 10px;
+}
+
+.add-post-div-fr {
+    float: right;
+}
+
+.add-post-p-1 {
+    border-style: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    background-image: none;
+    margin: 23px auto 0 76px;
+    padding: 10px 52px;
+    border-radius: 50px !important;
+}
+
+.add-post-p-2 {
+    margin: -42px 85px 0 10px;
+    padding: 10px 64px;
+    border-radius: 50px !important;
+    border-style: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    background-image: none;
+}
+
+.add-post-p-3 {
+    margin: 20px auto 0 75px;
+    padding: 10px 172px 10px 171px;
+    border-radius: 50px !important;
+    border-style: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    background-image: none;
+}
+
+.add-post-p-4 {
+    margin: 11px auto 0 76px;
+    padding: 10px 174px;
+    border-radius: 50px !important;
+    border-style: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    background-image: none;
+    color: #ffffff !important;
+    background-color: #2e2e2e !important;
+}
+
+.add-post-div-5 {
+    margin-top: 30px;
+}
+.add-post-div-6 {
+    margin-buttom: 30px;
+}
+
+.add-post-color {
+    background-color: #880606;
+    color: white;
+}
+
+.a-hover:hover {
+    color: #d5dbf0;
+    text-decoration: none;
+}
+
+.add-post-margin {
+    display: table;
+}
+
+.center-90 {
+    left: 15px;
+}
+
+.m-but {
+    buttom: 50px;
+}
+
+section textarea {
+    cols: 70;
+    rows: 12;
+}
+
+.profile-title-10 {
+    text-align: center;
+}
+
+.post-delete-1 {
+    padding: 10px 64px;
+    border-radius: 50px !important;
+    border-style: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background-image: none;
+}
+
+.post-delete-2 {
+    padding: 10px 64px;
+    border-radius: 50px !important;
+    border-style: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background-image: none;
+    color: #ffffff !important;
+    background-color: #2e2e2e !important;
+}
+
+.user-post-b:hover {
+    text-decoration:none;
+}

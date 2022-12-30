@@ -3,10 +3,13 @@ from django.db.models import Count, Q
 from .models import Post, Comment
 from .forms import CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.urls import reverse_lazy
+from django.contrib import messages
 from taggit.models import Tag
-
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from users.models import User
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
@@ -81,9 +84,67 @@ def reply_page(request):
 
         return redirect("/")
 
-class AddPost(CreateView):
+    # Add Post view with implict user as author
+class AddPost(SuccessMessageMixin, CreateView):
     model = Post
     template_name = 'add_post.html'
-    fields = ['title', 'slug', 'author', 'image', 'tags', 'body', 'status']
+    fields = ['title', 'slug', 'image', 'tags', 'body']
+    success_message = "Thank you for your contribution. An editor will review your beautifull story in order to be published."
 
-    # success_url = reverse_lazy('users:users-home')
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        return super(AddPost, self).form_valid(form)
+
+    success_url = reverse_lazy("users:users-profile")
+
+    # User Posts List
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'user_posts.html'
+    context_object_name = 'posts'
+    paginate_by = 6
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-created')
+
+    # Updatarea postarilor utilizatorului
+
+
+    # Option to a user to update his one posts
+class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    template_name = 'add_post.html'
+    fields = ['title', 'slug', 'image', 'tags', 'body']
+    success_message = "You successfully updated the post."
+
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+    success_url = reverse_lazy('users:users-profile')
+
+
+    # Option to users to delete his one posts.
+
+class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = 'post_confirm_delete.html'
+    success_message = "You beautiful little story was successfully deleted."
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+    success_url = reverse_lazy('users:users-profile')

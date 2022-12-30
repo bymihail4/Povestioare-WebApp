@@ -4,7 +4,6 @@ from PIL import Image
 
 
 class Profil(models.Model):
-    objects = None
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     avatar = models.ImageField(default='prima.jpg', upload_to='profile_images')
@@ -14,7 +13,7 @@ class Profil(models.Model):
         return self.user.username
 
     def save(self, *args, **kwargs):
-        super().save()
+        super().save(*args, **kwargs)
 
         img = Image.open(self.avatar.path)
 

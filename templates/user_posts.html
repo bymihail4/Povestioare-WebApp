@@ -1,0 +1,58 @@
+{% extends "base2.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 m-auto">
+<div class="comment-title" style="color: #880606; font-weight: 700;">
+  <h2 class="mb-3">Posts by {{view.kwargs.username}} ({{page_obj.paginator.count}})</h2>
+</div>
+
+    {% for post in posts %}
+<div class="card mb-4 wow comment-media">
+        <!--Card content-->
+    <div class="card-body-detail d-sm-flex justify-content-between">
+        <div class="mb-2 mb-sm-0 pt-1"></div>
+            <a href="{{ post.get_absolute_url }}" class="u-text u-text-custom-color-1 u-text-default u-text-1" style="font-weight:800;">{{ post.title }}</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                <b>{{ post.publish.date }}</b>
+                <b style="font-weight:400;">{{ post.body|safe|striptags|truncatechars:80 }}</b>
+            <form method="get" action="">
+                <a type="submit" href="{% url 'blog:post-update' post.slug %}" class="btn user-post-b" style="background-color: #2e2e2e; color: white;">Update</a>
+            </form>
+            <form method="post" action="">
+                      {% csrf_token %}
+                <a type="submit" href="{% url 'blog:post-delete' post.slug %}" class="btn user-post-b" style="background-color: #880606; color: white;">Delete</a>
+            </form>
+        </div>
+    </div>
+</div>
+    
+    {% endfor %}
+<div class="pagination-post"></div>
+<div class="pagination justify-content-center" style="margin-top: 20px;">
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="pagination-color-2 page-link" href="?page=1">First</a>
+        <a class="pagination-color-2 page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="pagination-color-2 page-link" href="?page={{num}}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="pagination-color-2 page-link" href="?page={{num}}">{{num}}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="pagination-color-2 page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+        <a class="pagination-color-2 page-link" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+      {% endif %}
+
+    {% endif %}
+
+</div>
+<div class="pagination-post" style="margin-bottom: 30px;"></div>
+{% endblock %}

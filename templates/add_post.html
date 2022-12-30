@@ -1,18 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block addpost %}
-<div class="comment-media form-content my-3 p-3">
-    <div class="container">
-        <div class="add-post-form add-post-title">
-            <h1>Add Post</h1>
-        </div>
-        <div class="mt-0 mb-3">
-            <form method="post" enctype="multipart/form-data" class="add-post-form justify-content-center" >
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Update" class="com-but btn">
-            </form>
-        </div>
-     </div>
-</div>
+    <section class="u-align-center-lg u-align-center-md u-align-center-xl u-align-left-sm u-align-left-xs u-clearfix" id="carousel_ff1f">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="profile-title profile-title-2 u-text-custom-color-1 u-text-1" style="font-size: 36px; padding-top: 30px; padding-bottom: 30px;">Add your own little story:</h1>
+        <form method="post" enctype="multipart/form-data" >
+          <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  {% csrf_token %}
+                  <div style="margin-bottom: 70px;"></div>
+                  <div>
+                    <h4 class="add-post-div-fl add-post-title-4 u-text u-text-custom-color-1 u-text-2" style="padding-right: 75px;">Title:</h4>
+                    <p>{{ form.title }}</p>
+                  </div>
+                  <div style="margin-bottom: 30px;"></div>
+                  <h4 class="add-post-div-fl add-post-title-4 u-text u-text-custom-color-1 u-text-3" style="padding-right: 30px;">Slug (Url):</h4>
+                    <p>{{ form.slug }}</p>
+                  <div style="margin-bottom: 30px;"></div>
+                  <h4 class="add-post-div-fl add-post-title-4 u-text u-text-custom-color-1 u-text-4" style="padding-right: 30px;">Image:</h4>
+                    <p>{{ form.image }}</p>
+                  <div style="margin-bottom: 30px;"></div>
+                  <h4 class="add-post-div-fl add-post-title-4 u-text u-text-custom-color-1 u-text-6" style="padding-right: 75px;">Tags:</h4>
+                    <p>{{ form.tags }}</p>
+                  <div style="margin-bottom: 30px;"></div>
+                  <a href="/" class="add-post-color add-post-p-1 a-hover">Save Draft</a>
+                  <a href="/" class="add-post-color add-post-p-2 a-hover">Preview</a>
+                  <input type="submit" value="Publish" class="add-post-color add-post-p-3 a-hover add-post-margin">
+                  <a href="{% url 'blog:user-posts' user %}" class="add-post-color add-post-p-4 a-hover add-post-margin">Cancel</a>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-5">
+                  <h4 class="add-post-title-3 u-align-left u-text u-text-7" style="padding-top: 20px; padding-bottom: 20px">Type your little story here...</h4>
+                    {{ form.media }}
+                    {{ form.body }}
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </form>
+      </div>
+    </section>
+<div style="margin-bottom: 50px;"></div>
 {% endblock addpost %}

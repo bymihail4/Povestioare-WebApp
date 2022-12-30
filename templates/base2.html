@@ -8,13 +8,13 @@
     <meta name="keywords" content="Povestioare​, Ultimele Povestioare">
     <meta name="description" content="">
     <title>{% block title %}Povestioare{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static "css/nicepage.css" %}" media="screen"/>
+    <link rel="stylesheet" href="{% static "css/nicepage.css" %}" media="screen" />
+    <link rel="stylesheet" href="{% static "css/profile.css" %}" media="screen" />
     <link rel="stylesheet" href="{% static "css/Acasa.css" %}" media="screen" />
     <link rel="stylesheet" href="{% static "css/post_detail.css" %}" media="screen" />
     <script class="u-script" type="text/javascript" src="{% static "js/jquery.js" %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static "js/nicepage.js" %}" defer=""></script>
-
-     <!-- Code-ul js pentru evidentierea codului rendat! -->
+     <!-- highlight js -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -24,6 +24,7 @@
 
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -35,7 +36,7 @@
 				"https://www.instagram.com/name"]}
     </script>
 
-    <meta name="theme-color" content="#478ac9">
+    <meta name="theme-color" content="#F0F2F5">
     <meta name="twitter:site" content="@">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Acasa">
@@ -45,7 +46,7 @@
     <meta property="og:type" content="website">
 </head>
 <body class="u-body u-xl-mode" data-lang="en">
-    <header class="u-align-left u-clearfix u-header u-section-row-container" id="sec-0067">
+    <header class="u-align-left u-clearfix u-header u-section-row-container">
         {% if user.is_authenticated %}
     <div class="u-section-rows">
     <div class="u-custom-color-2 u-section-row u-section-row-1" id="sec-46aa">
@@ -87,7 +88,7 @@
             </span>
           </a>
         </div>
-        <form action="#" method="get" class="u-border-1 u-border-grey-30 u-search u-search-right u-search-1">
+        <form action="/" method="get" class="u-border-1 u-border-grey-30 u-search u-search-right u-search-1">
           <button class="u-search-button" type="submit">
             <span class="u-search-icon u-spacing-10 u-text-grey-40">
               <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966" style="">
@@ -104,7 +105,7 @@
       </div>
     </div>
 
-    <div class="u-custom-color-1 u-section-row u-section-row-2">
+    <div class="u-custom-color-1 u-section-row u-section-row-2" id="sec-37e8">
       <div class="u-clearfix u-sheet u-sheet-2">
         <h1 class="u-align-center u-text u-title u-text-1">Povestioare </h1>
         <nav data-position="" class="u-menu u-menu-dropdown u-offcanvas u-menu-1" style="margin-right: 0px;">
@@ -125,8 +126,7 @@
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1">
               <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-white u-text-hover-white "
-                   href="/" style="padding: 10px 20px;">Acasa</a>
+                <a class="u-button-style u-nav-link u-text-active-white u-text-hover-white" href="/" style="padding: 10px 20px;">Acasa</a>
               </li>
               <li class="u-nav-item">
                 <a class="u-button-style u-nav-link u-text-active-white u-text-hover-white {% if request.path == '/tag/amuzante/' %}active{% endif %}"
@@ -160,9 +160,8 @@
                     <a class="u-button-style u-nav-link {% if request.path == '/tag/amuzante/' %}active{% endif %}"
                        href="{{ request.scheme }}://{{ request.get_host }}/tag/amuzante/">Amuzante</a>
                   </li>
-                  <li class="u-nav-item">
-                    <a class="u-button-style u-nav-link {% if request.path == '/tag/marturii/' %}active{% endif %}"
-                       href="{{ request.scheme }}://{{ request.get_host }}/tag/marturii/">Marturii</a>
+                  <li class="u-nav-item {% if request.path == '/tag/marturii/' %}active{% endif %}">
+                    <a class="u-button-style u-nav-link" href="{{ request.scheme }}://{{ request.get_host }}/tag/marturii/">Marturii</a>
                   </li>
                   <li class="u-nav-item">
                     <a class="u-button-style u-nav-link {% if request.path == '/tag/diverse/' %}active{% endif %}"
@@ -182,7 +181,7 @@
   </div>
         {% else %}
         <div class="u-section-rows">
-        <div class="u-custom-color-2 u-section-row u-section-row-1">
+        <div class="u-custom-color-2 u-section-row u-section-row-1" id="sec-46aa">
           <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-social-icons u-spacing-10 u-social-icons-1">
               <a class="u-social-url" title="facebook" target="_blank" href="https://facebook.com/name">
@@ -220,7 +219,7 @@
                 </span>
               </a>
             </div>
-            <form action="#" method="get" class="u-border-1 u-border-grey-30 u-expanded-width-xs u-search u-search-right u-search-1">
+            <form action="/" method="get" class="u-border-1 u-border-grey-30 u-expanded-width-xs u-search u-search-right u-search-1">
               <button class="u-search-button" type="submit">
                 <span class="u-search-icon u-spacing-10 u-text-grey-40">
                   <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966" style="">
@@ -232,15 +231,14 @@
                   </svg>
                 </span>
               </button>
-              <input class="u-search-input" type="search" name="search" value="{{request.GET.q}}"
-                     placeholder="Search" aria-label="Search">
+              <input class="u-search-input" type="search" name="search" value="{{request.GET.q}}" placeholder="Search" aria-label="Search">
             </form>
           </div>
         </div>
 
         <div class="u-custom-color-1 u-section-row u-section-row-2" id="sec-37e8">
           <div class="u-clearfix u-sheet u-sheet-2">
-            <h1 class="u-text u-title u-text-1">Povestioare​</h1>
+            <h1 class="u-text u-title u-text-1" href="/">Povestioare​</h1>
 
             <nav data-position="" class="u-menu u-menu-one-level u-offcanvas u-menu-1">
               <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
@@ -260,8 +258,7 @@
               <div class="u-custom-menu u-nav-container">
                 <ul class="u-nav u-unstyled u-nav-1">
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                           href="/" style="padding: 10px 20px;">Acasa</a>
+                        <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/" style="padding: 10px 20px;">Acasa</a>
                     </li>
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base {% if request.path == '/tag/amuzante/' %}active{% endif %}"
@@ -284,8 +281,7 @@
                     </div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                         <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link"
-                               href="/">Acasa</a>
+                            <a class="u-button-style u-nav-link" href="/">Acasa</a>
                         </li>
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link {% if request.path == '/tag/amuzante/' %}active{% endif %}"
@@ -311,19 +307,64 @@
         </div>
         </div>
         {% endif %}
-         <!--Any flash messages pop up in any page because this is the base template-->
+    </header>
+    <section class="profile backgroundimage u-clearfix u-image u-section-1" data-image-width="1174" data-image-height="400">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <img style="margin: 21px auto 0 33px; float: left;" class="u-image u-image-circle u-preserve-proportions u-image-1" src="{% static '/prima.jpg' %}" >
+        <p class="profile-title" style="margin-left: 150px; margin-top: 65px;">Welcome: {{request.user}}</p>
+        <div class="profile-list">
+          <div class="profile-list" style="text-align: right;"></div>
+                <ul class="profile-menu u-nav u-popupmenu-items u-unstyled u-nav-3">
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="{% url 'users:users-profile' %}">Profile</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="{% url 'blog:add_post' %}">Add Post</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="{% url 'blog:user-posts' user %}">Posts</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="/">Comments</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="/">Messenger</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="/">Friends</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link"
+                       href="{{ request.scheme }}://{{ request.get_host }}/tag/diverse/">Saved</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="">Altele</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Any flash messages pop up in any page because this is the base template-->
         {% if messages %}
-          <div class="alert alert-dismissible" role="alert">
+          <div class="comment-media alert alert-dismissible" role="alert">
             {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+              <div class="comment-title alert alert-{{ message.tags }}">{{ message }}</div>
             {% endfor %}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
         {% endif %}
-    </header>
-
+<!--        <div class="sim-title">-->
+<!--            <h2 class="comment-title sim-title search-title" style="color: #880606">-->
+<!--                {% if request.GET.search is not null %}-->
+<!--                    Search Results for "{{ request.GET.search }}"-->
+<!--                {% endif %}-->
+<!--            </h2>-->
+<!--        </div>-->
+    {{message|safe}}
     {% block content %}
 
     {% endblock content %}
@@ -340,9 +381,7 @@
 
     {% endblock comment %}
 
-
-
-    <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-custom-color-2 u-footer" id="sec-4873">
+    <footer class="footer-2 u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-custom-color-2 u-footer" id="sec-4873">
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
           <div class="menu-collapse">
@@ -362,14 +401,13 @@
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled">
                 <li class="u-nav-item">
-                    <a class="u-button-style u-nav-link" href="/l">Acasa</a>
-                </li>
-                <li class="u-nav-item">
-                    <a class="u-button-style u-nav-link {% if request.path == '/tag/povestioara/' %}active{% endif %}"
-                       href="{{ request.scheme }}://{{ request.get_host }}/tag/povestioara/">Povestioare</a>
+                    <a class="u-button-style u-nav-link" href="Acasa.html">Acasa</a>
                 </li>
                 <li class="u-nav-item">
                     <a class="u-button-style u-nav-link" href="/sitemap.xml">Sitemap</a>
+                </li>
+                <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="{% url 'users:users-register' %}">Register</a>
                 </li>
             </ul>
           </div>
@@ -382,11 +420,10 @@
                         <a class="u-button-style u-nav-link" href="/">Acasa</a>
                     </li>
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link {% if request.path == '/tag/povestioara/' %}active{% endif %}"
-                           href="{{ request.scheme }}://{{ request.get_host }}/tag/povestioara/">Povestioare</a>
+                        <a class="u-button-style u-nav-link" href="/sitemap.xml">Sitemap</a>
                     </li>
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link" href="/sitemap.xml">Sitemap</a>
+                        <a class="u-button-style u-nav-link" href="{% url 'users:users-register' %}">Register</a>
                     </li>
                 </ul>
               </div>
@@ -444,7 +481,8 @@
       </div>
     </footer>
 
-    <!-- A plugin for password show/hide  -->
+
+<!-- A plugin for password show/hide  -->
    <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
 
 </body>

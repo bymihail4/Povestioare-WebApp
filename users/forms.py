@@ -39,6 +39,11 @@ class RegisterForm(UserCreationForm):
                                                                   'id': 'password',
                                                                   }))
 
+    def clean_username(self):
+        if User.objects.filter(username=self.cleaned_data['username']).exists():
+            raise forms.ValidationError('The username is already registered.')
+        return self.cleaned_data['username']
+
     def clean_email(self):
         if User.objects.filter(email=self.cleaned_data['email']).exists():
             raise forms.ValidationError("The given email is already registered")
@@ -84,7 +89,7 @@ class UpdateUserForm(forms.ModelForm):
 
 class UpdateProfileForm(forms.ModelForm):
     avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'cols': 80}))
 
     class Meta:
         model = Profil
