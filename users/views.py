@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
@@ -6,8 +6,37 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.urls import reverse_lazy
 from .forms import RegisterForm, LoginForm, UpdateProfileForm, UpdateUserForm
+from blog.models import Post
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+@login_required
+def favorite_list(request):
+    new = Post.published.filter(favorites=request.user)
+
+    paginator = Paginator(new, 6)
+    page = request.GET.get('page', 1)
+
+    try:
+        new = paginator.page(page)
+    except PageNotAnInteger:
+        new = paginator.page(1)
+    except EmptyPage:
+        new = paginator.page(paginator.num_pages)
+
+    return render(request,
+                  'users/favorites.html',
+                  {'new': new, page: 'pages'})
+
+
+@login_required
+def favorite_add(request, id):
+    post = get_object_or_404(Post, id=id)
+    if post.favorites.filter(id=request.user.id).exists():
+        post.favorites.remove(request.user)
+    else:
+        post.favorites.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 def home(request):
     return render(request, 'users/home.html')
 

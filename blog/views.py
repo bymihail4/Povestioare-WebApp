@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Count, Q
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from .forms import CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
@@ -41,6 +41,11 @@ def post_list(request, tag_slug=None):
 def post_detail(request, post):
     post = get_object_or_404(Post, slug=post, status='published')
 
+    favorite = bool
+
+    if post.favorites.filter(id=request.user.id).exists():
+        favorite = True
+
     comments = post.comments.filter(active=True)
     new_comment = None
 
@@ -59,6 +64,7 @@ def post_detail(request, post):
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:3]
 
     return render(request, 'post_detail.html', {'post': post,
+                                                'favorite': favorite,
                                                 'comments': comments,
                                                 'comment_form': comment_form,
                                                 'similar_posts': similar_posts})
@@ -88,7 +94,7 @@ def reply_page(request):
 class AddPost(SuccessMessageMixin, CreateView):
     model = Post
     template_name = 'add_post.html'
-    fields = ['title', 'slug', 'image', 'tags', 'body']
+    fields = ['title', 'slug', 'image', 'tags', 'category', 'body']
     success_message = "Thank you for your contribution. An editor will review your beautifull story in order to be published."
 
     def form_valid(self, form):
@@ -148,3 +154,22 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixi
         return False
 
     success_url = reverse_lazy('users:users-profile')
+
+class CatListView(ListView):
+    template_name = 'category.html'
+    context_object_name = 'catlist'
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Post.objects.filter(category__name__icontains=self.kwargs['category']).filter(status='published')
+
+
+
+def category_list(request):
+    category_list = Category.objects.exclude(name='default')
+
+    context = {
+        'category_list': category_list,
+    }
+
+    return context

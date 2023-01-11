@@ -6,8 +6,13 @@
 <div class="page-top"></div>
 <section class="u-clearfix current-section u-block-4b8a-1" id="sec-bfec">
   <div class="post-title-2 u-clearfix u-sheet u-block-4b8a-2">
-    <h1 class="post-title-1 u-text u-text-black u-text-default u-title u-block-control u-block-4b8a-4">{{post.title}}
+    <h1 class="post-title-1 u-text u-text-black u-text-default u-title u-block-control u-block-4b8a-4" style="color: #880606;">{{post.title}}
     </h1>
+    <p class="categories-1" style="font-weight: 600; color: #880606;">Categorii:
+      {% for category in category_list %}
+      <a href="/category/{{category.name}}" style="text-decoration:none; color: black;"> {{ category.name|title }}</a>,
+      {% endfor %}
+    </p>
     {% if post.image %}
     <img class="u-image u-image-default u-block-control u-block-4b8a-3 post-image-1" src="{{post.image.url}}" alt="" data-image-width="364" data-image-height="205">
     {% endif %}
@@ -25,19 +30,40 @@
   <div class="u-clearfix u-sheet u-sheet-1">
     <p class="u-align-justify u-custom-font u-font-roboto u-text u-text-default u-text-1"> {{post.body|safe}}</p>
   </div>
+
+    <div class="comment-media favorite-align d-sm-flex justify-content-between" style="font-size: 20px; margin-top: 0px;">
+      <div>
+        <p><strong>Etichete:</strong>
+        {% for tag in post.tags.all %}
+            <a style="color: #880606; font-size: 18px;" href="{% url 'blog:post_tag' tag.slug %}" class="tagging link-light text-decoration-none badge tagging">
+                {{tag.name}}
+            </a>
+            <!-- {% if not forloop.last %}, {% endif %} -->
+        {% endfor %}
+    </p>
+    </div>
+    <div>
+      {% if request.user.is_authenticated %}
+
+      {% if favorite %}
+      <div>
+        <a href="{% url 'users:favorite_list' %}" class="com-but favorite" style="margin-top: 20px;">Remove Favourties</a>
+      </div>
+      {% else %}
+      <div>
+        <a href="{% url 'users:favorite_add' post.id %}" class="com-but favorite" style="margin-top: 20px;">Add to Favourties</a>
+      </div>
+      {% endif %}
+
+      {% else %}
+      <div>
+        <a href="{% url 'users:favorite_add' post.id %}" class="com-but favorite" style="margin-top: 20px;">Add to Favourties</a>
+      </div>
+    </div>
+      {% endif %}
+    </div>
+
 </section>
-<div class="page-bottom"></div>
-<div class="comment-media" style="font-size: 20px;">
-  <p>
-    <strong>Etichete:</strong>
-    {% for tag in post.tags.all %}
-    <a style="color: #880606; font-size: 18px;" href="{% url 'blog:post_tag' tag.slug %}" class="tagging link-light text-decoration-none badge tagging">
-      {{tag.name}}
-    </a>
-    <!-- {% if not forloop.last %}, {% endif %} -->
-    {% endfor %}
-  </p>
-</div>
   {% endblock content %}
 
 {% block similar %}

@@ -74,7 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
+                'blog.views.category_list',
 
                 # Social Login/Signup
                 'social_django.context_processors.backends',

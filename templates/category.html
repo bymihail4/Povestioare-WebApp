@@ -1,25 +1,22 @@
-{% extends 'base.html' %}
+    {% extends "base.html" %}
 
-{% block content %}
+    {% block title %}
+    Category List
+    {% endblock %}
+
+    {% block content %}
     <section class="u-align-center u-clearfix u-section-1" id="sec-d27d">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Ultimele Povestioare</h1>
-        <p class="u-text u-text-2 body-subtitle">Povestioare scurte si frumoase pentru toata lumea.&nbsp</p>
+        <p class="u-text u-text-2 body-subtitle">Povestioare pentru toata lumea.&nbsp;</p>
       </div>
     </section>
-    {% if tag %}
-      <h3 class="tag-title">Mai multe povestioare {{ tag.name }}</h3>
-    {% endif %}
-    {% for post in posts %}
-    <div class="sim-title">
-      <h2 class="comment-title sim-title search-title" style="color: #880606; font-weight: 600; font-size: 1.8rem;">
-        {% if request.GET.search is not null %}
-          Search Results for "{{ request.GET.search }}"
-        {% endif %}
-      </h2>
-    </div>
     <section class="u-clearfix u-section-2" id="sec-398c">
-      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="container">
+          <div class="row">
+        <div class="tag-title"><h1 style="font-size: 32px; font-weight: 500px"> Category posts: {{view.kwargs.category}}</h1></div>
+        {% for post in catlist %}
+            <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-gutter-0 u-layout-spacing-vertical u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -28,7 +25,7 @@
                   <div class="u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-1" src="">
                     <div class="u-container-layout u-valign-top u-container-layout-1">
                       {% if post.image %}
-                      <img class="u-expanded-width u-image u-image-1" data-image-width="364" data-image-height="205" src="{{post.image.url}}">
+                      <img src="{{ post.image.url }}" class="u-expanded-width u-image u-image-1 rounded featured-image-list" data-image-width="364" data-image-height="205">
                       {% endif %}
                     </div>
                   </div>
@@ -40,7 +37,7 @@
                     <div class="u-layout-row">
                       <div class="u-align-center u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
                         <div class="u-container-layout u-valign-middle u-container-layout-2">
-                          <h3 style="font-weight: 600;" class="u-text u-text-custom-color-1 u-text-default u-text-1"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                          <h3 class="u-text u-text-custom-color-1 u-text-default u-text-1"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                         </div>
                       </div>
                     </div>
@@ -53,9 +50,9 @@
                           <p class="u-align-left u-text u-text-default u-text-3 body-name">@{{ post.author }}</p>
                           <p class="u-align-justify u-text u-text-4">{{ post.body|safe|striptags|truncatechars:270 }}</p>
                           <p style="float: right;"><a href="{{ post.get_absolute_url }}" style="text-decoration: none; color: #880606; font-weight: 600;">Read More</a></p>
-                          <p class="categories-1" style="font-weight: 600; float: left; color: #880606;">Categorii:
+                          <p class="categories-1" style="font-weight: 600; float: left; color: #880606;">Categories:
                             {% for category in category_list %}
-                          <a href="/category/{{category.name}}" style="text-decoration:none; color: black;"> {{ category.name|title }}</a>,
+                          <a href="{{ category.get_absolute_url }}" style="text-decoration:none; color: black;"> {{ category.name|title }}</a>,
                           {% endfor %}
                           </p>
                         </div>
@@ -67,11 +64,34 @@
             </div>
           </div>
         </div>
-      </div>
+        {% endfor %}
     </section>
-    {% endfor %}
 
-{% include "pagination.html" with page=posts %}
+<div class="pagination-post"></div>
+<div class="pagination justify-content-center">
+    {% if is_paginated %}
 
+      {% if page_obj.has_previous %}
+        <a class="pagination-color-2 page-link" href="?page=1">First</a>
+        <a class="pagination-color-2 page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="pagination-color-2 page-link" href="?page={{num}}">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="pagination-color-2 page-link" href="?page={{num}}">{{num}}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="pagination-color-2 page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+        <a class="pagination-color-2 page-link" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+      {% endif %}
+
+    {% endif %}
+
+</div>
+    {% include "pagination.html" with page=posts %}
 <div class="page-bottom"></div>
-{% endblock content %}
+    {% endblock %}

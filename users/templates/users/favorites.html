@@ -1,15 +1,15 @@
 {% extends "base2.html" %}
 
-{% block title %}Posts{% endblock %}
+{% block title %}Favorites{% endblock %}
 
 {% block content %}
 
 <div class="col-md-8 m-auto">
 <div class="comment-title" style="color: #880606; font-weight: 700;">
-  <h2 class="mb-3">({{page_obj.paginator.count}}) Posts added by {{view.kwargs.username}}</h2>
+  <h2 class="mb-3">Your favorite little stories</h2>
 </div>
 
-    {% for post in posts %}
+    {% for post in new %}
 <div class="card mb-4 wow comment-media">
         <!--Card content-->
     <div class="card-body-detail d-sm-flex justify-content-between">
@@ -17,20 +17,16 @@
             <a href="{{ post.get_absolute_url }}" class="u-text u-text-custom-color-1 u-text-default u-text-1" style="font-weight:800;">{{ post.title }}</a> &nbsp;&nbsp;&nbsp;&nbsp;
                 <b>{{ post.publish.date }}</b>
                 <b style="font-weight:400;">{{ post.body|safe|striptags|truncatechars:80 }}</b>
-            <form method="get" action="">
-                <a type="submit" href="{% url 'blog:post-update' post.slug %}" class="btn user-post-b" style="background-color: #2e2e2e; color: white;">Update</a>
-            </form>
-            <form method="post" action="">
-                      {% csrf_token %}
-                <a type="submit" href="{% url 'blog:post-delete' post.slug %}" class="btn user-post-b" style="background-color: #880606; color: white;">Delete</a>
-            </form>
+                <div id="favourite-section"><a href="{% url 'users:favorite_add' post.id %}"
+                                        class="com-but favorite">Remove</a></div>
         </div>
     </div>
 </div>
-    
+
     {% endfor %}
-<div class="pagination-post"></div>
-<div class="pagination justify-content-center" style="margin-top: 20px;">
+
+    <div class="pagination-post"></div>
+    <div class="pagination justify-content-center">
     {% if is_paginated %}
 
       {% if page_obj.has_previous %}
@@ -54,5 +50,7 @@
     {% endif %}
 
 </div>
-<div class="pagination-post" style="margin-bottom: 30px;"></div>
+
+{% include "pagination.html" with page=new %}
+<div class="pagination-post"></div>
 {% endblock %}

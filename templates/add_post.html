@@ -26,8 +26,11 @@
                   <h4 class="add-post-div-fl add-post-title-4 u-text u-text-custom-color-1 u-text-6" style="padding-right: 75px;">Tags:</h4>
                     <p>{{ form.tags }}</p>
                   <div style="margin-bottom: 30px;"></div>
-                  <a href="/" class="add-post-color add-post-p-1 a-hover">Save Draft</a>
-                  <a href="/" class="add-post-color add-post-p-2 a-hover">Preview</a>
+                  <h4 class="add-post-div-fl add-post-title-4 u-text u-text-custom-color-1 u-text-6" style="padding-right: 75px;">Category:</h4>
+                  <p>{{ form.category }}</p>
+                  <div style="margin-bottom: 30px;"></div>
+<!--                  <a href="/" class="add-post-color add-post-p-1 a-hover">Save Draft</a>-->
+<!--                  <a href="/" class="add-post-color add-post-p-2 a-hover">Preview</a>-->
                   <input type="submit" value="Publish" class="add-post-color add-post-p-3 a-hover add-post-margin">
                   <a href="{% url 'blog:user-posts' user %}" class="add-post-color add-post-p-4 a-hover add-post-margin">Cancel</a>
                 </div>

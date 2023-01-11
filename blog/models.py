@@ -5,6 +5,11 @@ from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 # Model Manager
 class PublishedManager(models.Manager):
@@ -20,6 +25,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=250)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     image = models.ImageField(upload_to='featured_image/%Y/%m/%d/')
@@ -29,6 +35,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICE, default='draft')
+    favorites = models.ManyToManyField(User, related_name="favorites", default='none', blank=True)
 
     class Meta:
         ordering = ('-publish',)
